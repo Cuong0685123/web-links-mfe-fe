@@ -80,7 +80,7 @@ export default function WebSearchList() {
   };
 
   return (
-    <div style={{ width: '100%', maxWidth: '100%', flex: 1, display: 'flex', flexDirection: 'col', alignItems: 'center' }}>
+    <div style={{ width: '100%', maxWidth: '100%', flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       {/* Khung tìm kiếm & Nút chọn nguồn */}
       <div style={{ width: '100%', maxWidth: '32rem', margin: '0 auto 1.5rem', padding: '0 0.5rem' }}>
         
