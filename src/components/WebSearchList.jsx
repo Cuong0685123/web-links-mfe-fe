@@ -80,74 +80,128 @@ export default function WebSearchList() {
   };
 
   return (
-    <div className="w-full max-w-full flex-1 flex flex-col items-center">
+    <div style={{ width: '100%', maxWidth: '100%', flex: 1, display: 'flex', flexDirection: 'col', alignItems: 'center' }}>
       {/* Khung tìm kiếm & Nút chọn nguồn */}
-      <div className="w-full max-w-xl mx-auto mb-6 px-1 flex flex-col items-center">
-        {/* Form Input với icon và nút Tìm nằm lọt lòng */}
-        <form onSubmit={handleSearch} className="w-full relative flex items-center">
-          <Search 
-            className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" 
-            size={18} 
-          />
-          <input
-            type="text"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder="Tìm kiếm bài viết, tài liệu, website..."
-            style={{ 
-              color: '#0f172a', 
-              backgroundColor: '#ffffff',
-              WebkitTextFillColor: '#0f172a' 
-            }}
-            className="w-full pl-10 pr-20 py-3 bg-white border border-slate-300 rounded-2xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-500/30 shadow-sm"
-          />
+      <div style={{ width: '100%', maxWidth: '32rem', margin: '0 auto 1.5rem', padding: '0 0.5rem' }}>
+        
+        {/* Form Input + Nút Tìm nằm cạnh nhau độc lập */}
+        <form onSubmit={handleSearch} style={{ display: 'flex', gap: '8px', width: '100%', alignItems: 'center' }}>
+          <div style={{ position: 'relative', flex: 1, display: 'flex', alignItems: 'center' }}>
+            <Search 
+              size={18} 
+              style={{ position: 'absolute', left: '12px', color: '#94a3b8', pointerEvents: 'none' }} 
+            />
+            <input
+              type="text"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="Tìm kiếm bài viết, tài liệu, website..."
+              style={{
+                width: '100%',
+                padding: '10px 14px 10px 38px',
+                backgroundColor: '#ffffff',
+                color: '#0f172a',
+                WebkitTextFillColor: '#0f172a',
+                borderRadius: '12px',
+                border: '1px solid #cbd5e1',
+                fontSize: '14px',
+                outline: 'none',
+                boxSizing: 'border-box'
+              }}
+            />
+          </div>
+
           <button
             type="submit"
             disabled={loading}
-            className="absolute right-1.5 top-1.5 bottom-1.5 px-4 bg-blue-600 hover:bg-blue-700 active:scale-95 text-white text-xs font-bold rounded-xl transition flex items-center justify-center gap-1.5 shrink-0 disabled:opacity-50 cursor-pointer shadow"
+            style={{
+              padding: '10px 18px',
+              backgroundColor: '#2563eb',
+              color: '#ffffff',
+              fontSize: '13px',
+              fontWeight: 600,
+              borderRadius: '12px',
+              border: 'none',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '6px',
+              flexShrink: 0
+            }}
           >
-            {loading ? <Loader2 size={15} className="animate-spin" /> : 'Tìm'}
+            {loading ? <Loader2 size={16} className="animate-spin" /> : 'Tìm'}
           </button>
         </form>
 
-        {/* 3 Nút chọn nguồn chia đều 3 cột, không bị dính sát mép trên */}
-        <div className="grid grid-cols-3 gap-2 mt-3.5 w-full">
+        {/* 3 Nút chọn nguồn chia đều 3 cột trên cùng 1 hàng */}
+        <div style={{ display: 'flex', gap: '8px', marginTop: '12px', width: '100%' }}>
           <button
             type="button"
             onClick={() => handleEngineChange('bing')}
-            className={`flex items-center justify-center gap-1.5 py-2 px-2 rounded-xl text-xs font-semibold border transition cursor-pointer ${
-              engine === 'bing'
-                ? 'bg-blue-600 text-white border-blue-500 shadow-md shadow-blue-500/20'
-                : 'bg-slate-900/90 text-slate-400 border-slate-800 hover:bg-slate-800'
-            }`}
+            style={{
+              flex: 1,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '6px',
+              padding: '8px 6px',
+              borderRadius: '12px',
+              fontSize: '12px',
+              fontWeight: 600,
+              cursor: 'pointer',
+              backgroundColor: engine === 'bing' ? '#2563eb' : '#0f172a',
+              color: engine === 'bing' ? '#ffffff' : '#94a3b8',
+              border: engine === 'bing' ? '1px solid #3b82f6' : '1px solid #1e293b'
+            }}
           >
-            <Globe size={13} className="shrink-0" />
+            <Globe size={13} />
             <span>Nguồn 1</span>
           </button>
           
           <button
             type="button"
             onClick={() => handleEngineChange('yandex')}
-            className={`flex items-center justify-center gap-1.5 py-2 px-2 rounded-xl text-xs font-semibold border transition cursor-pointer ${
-              engine === 'yandex'
-                ? 'bg-blue-600 text-white border-blue-500 shadow-md shadow-blue-500/20'
-                : 'bg-slate-900/90 text-slate-400 border-slate-800 hover:bg-slate-800'
-            }`}
+            style={{
+              flex: 1,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '6px',
+              padding: '8px 6px',
+              borderRadius: '12px',
+              fontSize: '12px',
+              fontWeight: 600,
+              cursor: 'pointer',
+              backgroundColor: engine === 'yandex' ? '#2563eb' : '#0f172a',
+              color: engine === 'yandex' ? '#ffffff' : '#94a3b8',
+              border: engine === 'yandex' ? '1px solid #3b82f6' : '1px solid #1e293b'
+            }}
           >
-            <Layers size={13} className="shrink-0" />
+            <Layers size={13} />
             <span>Nguồn 2</span>
           </button>
 
           <button
             type="button"
             onClick={() => handleEngineChange('duckduckgo')}
-            className={`flex items-center justify-center gap-1.5 py-2 px-2 rounded-xl text-xs font-semibold border transition cursor-pointer ${
-              engine === 'duckduckgo'
-                ? 'bg-blue-600 text-white border-blue-500 shadow-md shadow-blue-500/20'
-                : 'bg-slate-900/90 text-slate-400 border-slate-800 hover:bg-slate-800'
-            }`}
+            style={{
+              flex: 1,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '6px',
+              padding: '8px 6px',
+              borderRadius: '12px',
+              fontSize: '12px',
+              fontWeight: 600,
+              cursor: 'pointer',
+              backgroundColor: engine === 'duckduckgo' ? '#2563eb' : '#0f172a',
+              color: engine === 'duckduckgo' ? '#ffffff' : '#94a3b8',
+              border: engine === 'duckduckgo' ? '1px solid #3b82f6' : '1px solid #1e293b'
+            }}
           >
-            <Globe size={13} className="shrink-0" />
+            <Globe size={13} />
             <span>Nguồn 3</span>
           </button>
         </div>
